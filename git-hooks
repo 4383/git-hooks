@@ -1,0 +1,52 @@
+#!/bin/bash
+function download {
+    if [ -d /usr/share/git-flow-hooks ]; then
+        return 0
+    fi
+    echo "Need to clone git-flow-hooks"
+    pushd /tmp
+    git clone https://github.com/petervanderdoes/git-flow-hooks
+    sudo mv /tmp/git-flow-hooks /usr/share
+    popd
+}
+
+function init {
+    download
+    if [ ! -e $PWD/.git ]; then
+        echo "No git repository"
+        while true; do
+            read -p "Do you want to initialize a new git local repository ?[Y/N] " yn
+            case $yn in
+                [Yy]* ) git init .; break;;
+                [Nn]* ) exit;;
+                * ) echo "Please answer yes or no.";;
+            esac
+        done
+    fi
+    git flow init
+    git add ./
+    git checkout develop
+    if [ -d $PWD/.git/hooks ]; then
+        rm -rf $PWD/.git/hooks
+    fi
+    ln -s /usr/share/hbd/git-flow-hooks $PWD/.git/hooks
+    cp $PWD/.git/hooks/hooks_config.sample $PWD/.git/hooks_config
+
+    if [ ! -e $PWD/git-flow-version ]; then
+        echo "GITFLOW_VERSION=0.1.0-dev.1" > $PWD/git-flow-version
+    fi
+    if [ ! -e $PWD/Changes.mkdown ]; then
+        touch $PWD/Changes.mkdown
+    fi
+    git add ./
+    git commit -am "[git-hooks] init"
+}
+
+case "$1" in
+    "init")
+        init
+    ;;
+    *)
+        echo "wrong parameter (choose: init)"
+    ;;
+esac
