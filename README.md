@@ -1,7 +1,10 @@
 # git-hooks
 
 git-hooks goal is to help you to setup an amazing git-flow usage in second
-git-hooks is a wrapper for git, git-flow, and git-flow-hooks
+
+git-hooks is a wrapper for git, [git-flow](https://danielkummer.github.io/git-flow-cheatsheet/), and [git-flow-hooks](https://github.com/petervanderdoes/git-flow-hooks)
+
+git-hooks help you to setup a [beautiful branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 
 
 ## installation
@@ -24,8 +27,8 @@ $ # Have fun !
 ```
 
 ## authors
-* [Hervé Beraud](https://github.com/4383)
+* [Hervé Beraud](https://github.com/4383) (creator)
 
 ## credits
-* [peter vanderdoes](https://github.com/petervanderdoes/) for git-flow implementation
 * [Vincent Driessen](https://github.com/nvie/) for git-flow design
+* [Peter Vanderdoes](https://github.com/petervanderdoes/) for git-flow implementation
