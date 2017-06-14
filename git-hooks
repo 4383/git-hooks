@@ -10,6 +10,10 @@ function download {
     popd
 }
 
+function command_exists () {
+    type "$1" &> /dev/null ;
+}
+
 function init {
     download
     if [ ! -e $PWD/.git ]; then
@@ -23,7 +27,13 @@ function init {
             esac
         done
     fi
-    git flow init
+    if command_exists `git flow init`; then
+        git flow init
+    else
+        echo "git-flow are not installed"
+        echo "please install git-flow"
+        echo "https://github.com/petervanderdoes/gitflow-avh"
+    fi
     git add ./
     git checkout develop
     if [ -d $PWD/.git/hooks ]; then
