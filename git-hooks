@@ -39,7 +39,7 @@ function init {
     if [ -d $PWD/.git/hooks ]; then
         rm -rf $PWD/.git/hooks
     fi
-    ln -s /usr/share/hbd/git-flow-hooks $PWD/.git/hooks
+    ln -s /usr/share/git-flow-hooks $PWD/.git/hooks
     cp $PWD/.git/hooks/hooks_config.sample $PWD/.git/hooks_config
 
     if [ ! -e $PWD/git-flow-version ]; then
