@@ -3,3 +3,7 @@ sudo: required
 script:
     - ls
     - sudo cp git-hooks /usr/bin
+    - sudo chmod ugo+x /usr/bin/git-hooks
+    - mkdir /tmp/test
+    - cd /tmp/test
+    - git-hooks init
