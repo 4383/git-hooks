@@ -2,3 +2,4 @@ sudo: required
 
 script:
     - ls
+    - sudo cp git-hooks /usr/bin
