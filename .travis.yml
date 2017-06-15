@@ -6,4 +6,6 @@ script:
     - sudo chmod ugo+x /usr/bin/git-hooks
     - mkdir /tmp/test
     - cd /tmp/test
-    - git-hooks init -y
+    - git config --global user.name "Your Name"
+    - git config --global user.email "you@example.com"
+    - git-hooks init
