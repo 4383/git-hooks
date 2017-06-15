@@ -1,5 +1,7 @@
 # git-hooks
 
+[![Build Status](https://travis-ci.org/4383/git-hooks.svg?branch=travis)](https://travis-ci.org/4383/git-hooks)
+
 git-hooks goal is to help you to setup an amazing git-flow usage in second
 
 git-hooks is a wrapper for git, [git-flow](https://danielkummer.github.io/git-flow-cheatsheet/), and [git-flow-hooks](https://github.com/petervanderdoes/git-flow-hooks)
