@@ -6,4 +6,4 @@ script:
     - sudo chmod ugo+x /usr/bin/git-hooks
     - mkdir /tmp/test
     - cd /tmp/test
-    - git-hooks init
+    - git-hooks init -y
