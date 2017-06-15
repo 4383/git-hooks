@@ -19,7 +19,7 @@ function init {
     if [ ! -e $PWD/.git ]; then
         echo "No git repository"
         while true; do
-            yes=$1
+            yes=$2
             shift
             
             case "$command" in
