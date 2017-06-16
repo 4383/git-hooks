@@ -1,11 +1,54 @@
 - hosts: 127.0.0.1
   connection: local
   tasks:
-  - name: install requirements
+  - name: install basic requirements
     package:
-      name: {{ item }}
-      state: latest
-      with_items:
+        name: "{{ item }}"
+        state: latest
+    with_items:
         - git
-        - git-flow
-        - wget
+        - bash
+
+  - name: download git flow
+    get_url:
+        url: https://raw.githubusercontent.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh 
+        dest: /tmp/gitflow-installer.sh
+
+  - name: install git flow
+    command: bash /tmp/gitflow-installer.sh install stable
+
+  - name: clean git flow install
+    file: 
+        path: /tmp/gitflow-installer.sh
+        state: absent
+
+  - name: git config
+    command: git config --global user.name "Chuck Norris"
+    command: git config --global user.email "chuck@norris.com"
+
+  - name: install git-flow-hooks
+    git:
+        repo: 'https://github.com/petervanderdoes/git-flow-hooks'
+        dest: /usr/share/git-flow-hooks
+        clone: yes
+
+  - file:
+        path: /tmp/test
+        state: directory
+
+  - name: test gitflow install
+    command: chdir=/tmp/test git flow init
+
+  - file:
+        path: /tmp/test/.git/hooks
+        state: absent
+
+  - name: setup git hooks
+    file:
+        src: /usr/share/git-flow-hooks
+        path: /tmp/test/.git/hooks
+        state: link
+
+  - copy:
+        src: /usr/share/git-flow-hooks/hooks_config.sample
+        dest: /tmp/test/.git/hooks_config
