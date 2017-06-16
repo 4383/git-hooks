@@ -18,14 +18,11 @@ function init {
     download
     if [ ! -e $PWD/.git ]; then
         echo "No git repository"
-        while true; do
-            read -p "Do you want to initialize a new git local repository ?[Y/N] " yn
-            case $yn in
-                [Yy]* ) git init .; break;;
-                [Nn]* ) exit;;
-                * ) echo "Please answer yes or no.";;
-            esac
-        done
+        if command_exists git; then
+            git init .
+        else
+            echo "git must be installed on your system! abort!"
+        fi
     fi
     if command_exists `git flow init`; then
         git flow init
@@ -52,9 +49,12 @@ function init {
     git commit -am "[git-hooks] init"
 }
 
-case "$1" in
+command=$1
+shift
+
+case "$command" in
     "init")
-        init
+        init $@
     ;;
     *)
         echo "wrong parameter (choose: init)"
