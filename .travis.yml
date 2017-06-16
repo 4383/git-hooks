@@ -4,6 +4,7 @@ script:
     - ls
     - sudo cp git-hooks /usr/bin
     - sudo chmod ugo+x /usr/bin/git-hooks
+    - wget --no-check-certificate -q  https://raw.githubusercontent.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh && sudo bash gitflow-installer.sh install develop; rm gitflow-installer.sh
     - mkdir /tmp/test
     - cd /tmp/test
     - git config --global user.name "Your Name"

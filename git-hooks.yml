@@ -1,0 +1,11 @@
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+  - name: install requirements
+    package:
+      name: {{ item }}
+      state: latest
+      with_items:
+        - git
+        - git-flow
+        - wget
